@@ -1,23 +1,116 @@
-<div class="sidebar">
-  <h2>SI Analytics Academy</h2>
-  <ul id="lessonsList"></ul>
-</div>
-<div class="main">
-  <h3>Welcome, <span id="userEmail"></span></h3>
-  <p>Progress: <span id="progressPercent">0%</span></p>
-  <a href="course.html?session=1">Start Learning →</a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | SI Analytics Academy</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0F766E, #0F172A);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      margin: 0;
+    }
 
-<script>
-const lessons = [
-  {id:1, title:"Introduction to statistical methods", video:"Tx6voP7sXDk"},
-  {id:2, title:"Understanding the STATA environment", video:"6-hdZH1P6b0"},
-  {id:3, title:"Data manipulation and wrangling", video:"1rQrgrdpngQ"},
-  {id:4, title:"Reporting and chart creation", video:"HdwFIFgZoxY"}
-];
+    .dashboard-container {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 40px 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(6px);
+      width: 90%;
+      max-width: 500px;
+    }
 
-lessons.forEach(lesson=>{
-  document.getElementById('lessonsList').innerHTML +=
-    `<li><a href="course.html?session=${lesson.id}">${lesson.title}</a></li>`;
-});
-</script>
+    .logo {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 30px;
+      color: #e5e7eb;
+    }
+
+    button {
+      padding: 12px 28px;
+      border: none;
+      border-radius: 8px;
+      background-color: #fff;
+      color: #0F766E;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #0F766E;
+      color: #fff;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      color: #ffffffb3;
+      font-size: 0.85em;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <img src="assets/logo.png" alt="SI Analytics Logo" class="logo">
+    <h2>Welcome to SI Analytics Academy 🎉</h2>
+    <p id="welcomeText">Loading user...</p>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+  <footer>
+    © 2025 Strategic Insights and Analytics (SI Analytics). All rights reserved.
+  </footer>
+
+  <script type="module">
+    // Import Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+    import { firebaseConfig } from "./js/firebase-config.js";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const welcomeText = document.getElementById("welcomeText");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    // Check if user is logged in
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const email = user.email;
+        welcomeText.textContent = `You are logged in as ${email}`;
+      } else {
+        // Redirect to login if not authenticated
+        window.location.href = "login.html";
+      }
+    });
+
+    // Logout button
+    logoutBtn.addEventListener("click", async () => {
+      await signOut(auth);
+      alert("You have been logged out successfully!");
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>
