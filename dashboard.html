@@ -1,0 +1,23 @@
+<div class="sidebar">
+  <h2>SI Analytics Academy</h2>
+  <ul id="lessonsList"></ul>
+</div>
+<div class="main">
+  <h3>Welcome, <span id="userEmail"></span></h3>
+  <p>Progress: <span id="progressPercent">0%</span></p>
+  <a href="course.html?session=1">Start Learning →</a>
+</div>
+
+<script>
+const lessons = [
+  {id:1, title:"Introduction to statistical methods", video:"Tx6voP7sXDk"},
+  {id:2, title:"Understanding the STATA environment", video:"6-hdZH1P6b0"},
+  {id:3, title:"Data manipulation and wrangling", video:"1rQrgrdpngQ"},
+  {id:4, title:"Reporting and chart creation", video:"HdwFIFgZoxY"}
+];
+
+lessons.forEach(lesson=>{
+  document.getElementById('lessonsList').innerHTML +=
+    `<li><a href="course.html?session=${lesson.id}">${lesson.title}</a></li>`;
+});
+</script>

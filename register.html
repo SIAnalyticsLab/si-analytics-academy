@@ -1,0 +1,17 @@
+<form id="registerForm">
+  <input type="email" id="email" placeholder="Email" required />
+  <input type="password" id="password" placeholder="Password" required />
+  <button type="submit">Register</button>
+</form>
+
+<script src="js/firebase-config.js"></script>
+<script>
+document.getElementById('registerForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const email = email.value;
+  const password = password.value;
+  auth.createUserWithEmailAndPassword(email, password)
+  .then(() => location.href = 'dashboard.html')
+  .catch(err => alert(err.message));
+});
+</script>

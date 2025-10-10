@@ -1,0 +1,14 @@
+<h1>Certificate of Completion</h1>
+<p>This certifies that <span id="username"></span> has completed the course.</p>
+<button id="downloadBtn">Download PDF</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  doc.text("Certificate of Completion", 50, 50);
+  doc.text("Awarded to: " + document.getElementById('username').textContent, 50, 70);
+  doc.save("certificate.pdf");
+});
+</script>

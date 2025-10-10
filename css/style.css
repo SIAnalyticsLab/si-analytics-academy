@@ -1,0 +1,107 @@
+:root {
+  --teal: #0F766E;
+  --deep-blue: #0F172A;
+  --white: #FFFFFF;
+  --gray: #f4f4f4;
+}
+
+/* Reset and ensure full height */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  color: var(--deep-blue);
+  background-color: var(--gray);
+  text-align: center;
+}
+
+/* ========== HERO SECTION ========== */
+.hero {
+  min-height: 100vh; /* full screen height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical centering */
+  align-items: center;     /* horizontal centering */
+  background: linear-gradient(135deg, var(--teal), var(--deep-blue));
+  color: var(--white);
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 24px;
+}
+
+/* ========== BUTTONS ========== */
+.btn-primary, .btn-secondary {
+  padding: 12px 28px;
+  margin: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: var(--white);
+  color: var(--teal);
+  border: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--white);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background: var(--white);
+  color: var(--deep-blue);
+}
+
+/* ========== FOOTER ========== */
+footer {
+  background-color: var(--deep-blue);
+  color: var(--white);
+  font-size: 0.9em;
+  padding: 20px 10px;
+  text-align: center;
+  position: relative;
+}
+
+/* If footer should always stick to bottom on shorter pages */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 20px;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 80%;
+    max-width: 250px;
+    font-size: 15px;
+  }
+
+  .logo {
+    width: 80px;
+  }
+}
