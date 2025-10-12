@@ -1,6 +1,3 @@
-// /js/firebase-config.js
-
-// Your web app's Firebase configuration
 export const firebaseConfig = {
   apiKey: "AIzaSyAgBhkRDr24rL5lCanJNqj9jfvMIrbODrY",
   authDomain: "si-analytics-academy.firebaseapp.com",
